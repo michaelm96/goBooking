@@ -1,0 +1,41 @@
+package main
+
+import (
+	"fmt"
+	"goBooking/internal/config"
+	"net/http"
+	"testing"
+)
+
+// func Test_routes(t *testing.T) {
+// 	type args struct {
+// 		app *config.AppConfig
+// 	}
+// 	tests := []struct {
+// 		name string
+// 		args args
+// 		want http.Handler
+// 	}{
+// 		// TODO: Add test cases.
+// 	}
+// 	for _, tt := range tests {
+// 		t.Run(tt.name, func(t *testing.T) {
+// 			if got := routes(tt.args.app); !reflect.DeepEqual(got, tt.want) {
+// 				t.Errorf("routes() = %v, want %v", got, tt.want)
+// 			}
+// 		})
+// 	}
+// }
+
+func TestRoutes(t *testing.T) {
+	var app *config.AppConfig
+
+	h := routes(app)
+
+	switch v := h.(type) {
+	case http.Handler:
+		// do nothing
+	default:
+		t.Error(fmt.Sprintf("type is not http.Handler, but is %T", v))
+	}
+}
